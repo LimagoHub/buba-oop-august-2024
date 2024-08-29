@@ -8,8 +8,13 @@ namespace de.buba.collections
 {
     public class Stapel
     {
+
+        private int[] data;
+        private int index;
         public Stapel()
         {
+            data = new int[10];
+            index = 0;
         }
         /// <summary>
         /// Fachliche Dokumentation
@@ -17,21 +22,26 @@ namespace de.buba.collections
         /// <param name="value"></param>
         public void Push(int value) // Verhalten im Fehlerfall
         {
+            if (IsFull) return;
+            data[index++] = value;
+
 
         }
 
         public int Pop()
         {
-            return 0;
+            if (IsEmpty) return 0;
+        
+            return data[--index];
         }
 
         public bool IsEmpty
         {
-            get => false;
+            get => index <= 0;
         }
         public bool IsFull
         {
-            get => false;
+            get => index >= data.Length;
         }
     }
 }
