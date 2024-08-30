@@ -5,4 +5,13 @@ using geometrie;
 Console.WriteLine("Hello, World!");
 
 
-Punkt p = new();
+Punkt p;
+Kreis k;
+
+k = new Kreis();
+
+p = k;
+
+p.Rechts();
+
+Console.WriteLine(p);

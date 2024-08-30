@@ -8,12 +8,17 @@ namespace de.buba.collections
 {
     public class Stapel
     {
-
+        private const int DEFAULT_SIZE = 10;
         private int[] data;
         private int index;
-        public Stapel()
+        public Stapel():this(DEFAULT_SIZE)
         {
-            data = new int[10];
+           
+        }
+
+        public Stapel(int size)
+        {
+            data = new int[size <1 ?DEFAULT_SIZE: size];
             index = 0;
         }
         /// <summary>

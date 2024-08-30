@@ -70,7 +70,7 @@ namespace geometrie
         {
             Y--;
         }
-        
+
         
         public override string ToString()
         {
