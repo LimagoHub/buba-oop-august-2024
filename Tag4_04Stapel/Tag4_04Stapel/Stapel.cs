@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace de.buba.collections
 {
-    public class Stapel<HERBERT>
+    public class Stapel<T>: IStapel<T>
     {
         private const int DEFAULT_SIZE = 10;
-        private HERBERT[] data;
+        private T[] data;
         private int index;
+        
+
         public Stapel():this(DEFAULT_SIZE)
         {
            
@@ -18,28 +20,17 @@ namespace de.buba.collections
 
         public Stapel(int size)
         {
-            data = new HERBERT[size <1 ?DEFAULT_SIZE: size];
-            index = 0;
+            try
+            {
+                
+                data = new T[size];
+                index = 0;
+            }
+            catch (Exception e)
+            {
+                throw new StapelException("Init",e);
+            }
         }
-        /// <summary>
-        /// Fachliche Dokumentation
-        /// </summary>
-        /// <param name="value"></param>
-        public void Push(HERBERT value) // Verhalten im Fehlerfall
-        {
-            if (IsFull) return;
-            data[index++] = value;
-
-
-        }
-
-        public HERBERT? Pop()
-        {
-            if (IsEmpty) throw new StapelException("Underflow");
-        
-            return data[--index];
-        }
-
         public bool IsEmpty
         {
             get => index <= 0;
@@ -47,6 +38,21 @@ namespace de.buba.collections
         public bool IsFull
         {
             get => index >= data.Length;
+        }
+
+        public void Push(T value) // Verhalten im Fehlerfall
+        {
+            if (IsFull) throw new StapelException("Overflow"); ;
+            data[index++] = value;
+
+
+        }
+
+        public T? Pop()
+        {
+            if (IsEmpty) throw new StapelException("Underflow");
+
+            return data[--index];
         }
     }
 }
