@@ -5,13 +5,13 @@ using de.buba.collections;
 using de.buba.tiere;
 using geometrie;
 
-Stapel myStapel = new Stapel(40);
+Stapel<Punkt> myStapel = new Stapel<Punkt>(40);
 
 for (int i = 0; i < 10; i++)
 {
     if (!myStapel.IsFull)
     {
-        myStapel.Push(new Schwein("Schwein Nr. " + i));
+        //myStapel.Push(new Schwein("Schwein Nr. " + i));
         myStapel.Push(new Punkt(i,i));
         myStapel.Push(new Kreis(i, i));
     }
@@ -19,5 +19,6 @@ for (int i = 0; i < 10; i++)
 
 while (!myStapel.IsEmpty)
 {
-    Console.WriteLine(myStapel.Pop());
+    Punkt p =  myStapel.Pop();
+    Console.WriteLine(p);
 }
